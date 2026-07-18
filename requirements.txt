@@ -1,5 +1,4 @@
-smolagents>=1.15
-huggingface_hub>=0.26
+smolagents[openai]>=1.15
 ddgs>=9.0
 streamlit>=1.38
 python-dotenv>=1.0

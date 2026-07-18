@@ -3,7 +3,7 @@ from pathlib import Path
 import streamlit as st
 
 from agent import run_validation
-from config import HF_TOKEN, MODEL_ID
+from config import GROQ_API_KEY, MODEL_ID
 
 st.set_page_config(
     page_title="Startup Validation Agent",
@@ -88,8 +88,8 @@ st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 with st.sidebar:
     st.markdown("### Configuration")
     st.markdown(f"**Model**  \n`{MODEL_ID}`")
-    token_status = "Connected" if HF_TOKEN else "Not configured"
-    st.markdown(f"**Hugging Face token**  \n{token_status}")
+    token_status = "Connected" if GROQ_API_KEY else "Not configured"
+    st.markdown(f"**Groq API key**  \n{token_status}")
     st.divider()
     st.markdown(
         "This agent researches the market for a startup idea and produces a "
@@ -110,10 +110,10 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if not HF_TOKEN:
+if not GROQ_API_KEY:
     st.warning(
-        "No Hugging Face token configured. Copy `.env.example` to `.env` and add a "
-        "token from huggingface.co/settings/tokens before running a validation."
+        "No Groq API key configured. Copy `.env.example` to `.env` and add a free "
+        "key from console.groq.com/keys before running a validation."
     )
 
 st.markdown('<div class="section-label">Startup Idea</div>', unsafe_allow_html=True)
@@ -127,7 +127,7 @@ idea = st.text_area(
     ),
 )
 
-run_clicked = st.button("Validate Idea", type="primary", disabled=not HF_TOKEN)
+run_clicked = st.button("Validate Idea", type="primary", disabled=not GROQ_API_KEY)
 
 if run_clicked:
     if not idea.strip():

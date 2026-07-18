@@ -11,10 +11,12 @@ TEMPLATES_DIR = ROOT_DIR / "templates"
 REPORTS_DIR = ROOT_DIR / "reports"
 DATA_DIR = ROOT_DIR / "data"
 
-HF_TOKEN = os.getenv("HF_TOKEN", "")
-MODEL_ID = os.getenv("MODEL_ID", "Qwen/Qwen2.5-72B-Instruct")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+GROQ_API_BASE = os.getenv("GROQ_API_BASE", "https://api.groq.com/openai/v1")
+MODEL_ID = os.getenv("MODEL_ID", "llama-3.3-70b-versatile")
 
-MAX_AGENT_STEPS = int(os.getenv("MAX_AGENT_STEPS", "16"))
+MAX_AGENT_STEPS = int(os.getenv("MAX_AGENT_STEPS", "10"))
+MAX_TOKENS = int(os.getenv("MAX_TOKENS", "1500"))
 
 for _dir in (REPORTS_DIR, DATA_DIR):
     _dir.mkdir(exist_ok=True)

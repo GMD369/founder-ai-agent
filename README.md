@@ -13,13 +13,14 @@ python -m venv .venv
 pip install -r requirements.txt
 
 copy .env.example .env
-# then edit .env and set HF_TOKEN (free at https://huggingface.co/settings/tokens)
+# then edit .env and set GROQ_API_KEY (free at https://console.groq.com/keys)
 ```
 
-The default model is `Qwen/Qwen2.5-72B-Instruct` served via the free Hugging Face
-Inference API. Free-tier usage is rate-limited; if you hit rate limits or the
-model is temporarily unavailable, set `MODEL_ID` in `.env` to another chat model
-available on the HF Inference API (e.g. `meta-llama/Llama-3.3-70B-Instruct`).
+The default model is `llama-3.3-70b-versatile`, served via Groq's free-tier API
+(fast inference, rate-limited by requests/tokens per minute rather than a small
+one-time monthly credit). If you hit rate limits, set `MODEL_ID` in `.env` to
+another model available on Groq (e.g. `llama-3.1-8b-instant` for a lighter/faster
+option).
 
 ## Run
 

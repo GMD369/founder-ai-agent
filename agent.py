@@ -1,6 +1,13 @@
-from smolagents import CodeAgent, InferenceClientModel
+from smolagents import CodeAgent, OpenAIServerModel
 
-from config import HF_TOKEN, MAX_AGENT_STEPS, MODEL_ID, PROMPTS_DIR
+from config import (
+    GROQ_API_BASE,
+    GROQ_API_KEY,
+    MAX_AGENT_STEPS,
+    MAX_TOKENS,
+    MODEL_ID,
+    PROMPTS_DIR,
+)
 from tools import save_report, search_tool
 
 
@@ -13,7 +20,12 @@ def build_agent() -> CodeAgent:
     with web search and report-saving tools, guided by the validation workflow
     prompt.
     """
-    model = InferenceClientModel(model_id=MODEL_ID, token=HF_TOKEN)
+    model = OpenAIServerModel(
+        model_id=MODEL_ID,
+        api_base=GROQ_API_BASE,
+        api_key=GROQ_API_KEY,
+        max_tokens=MAX_TOKENS,
+    )
     agent = CodeAgent(
         tools=[search_tool, save_report],
         model=model,
